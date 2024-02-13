@@ -5,6 +5,9 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.ktorfit)
+    kotlin("plugin.serialization") version "1.9.21"
 }
 
 kotlin {
@@ -29,13 +32,26 @@ kotlin {
         }
     }
 
+    dependencies {
+        add("kspCommonMainMetadata", libs.ktorfit.ksp)
+        add("kspAndroid", libs.ktorfit.ksp)
+        add("kspIosArm64", libs.ktorfit.ksp)
+        add("kspIosX64", libs.ktorfit.ksp)
+        add("kspIosSimulatorArm64", libs.ktorfit.ksp)
+//        add("kspJvm", libs.ktorfit.ksp)
+    }
+
     sourceSets {
         val desktopMain by getting
 
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
+            //Koin
+            implementation(libs.koin.core)
+            implementation(libs.koin.core.android)
         }
+
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -45,11 +61,16 @@ kotlin {
             implementation(compose.components.resources)
             api(compose.foundation)
             api(compose.animation)
-
-            //Precompose navigation
             api(libs.precompose.lib)
             api(libs.precompose.viewmodel)
             api(libs.precompose.koin)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.kotlinx.serialization.json)
+            implementation("media.kamel:kamel-image:0.9.1")
+            implementation("de.jensklingenberg.ktorfit:ktorfit-lib:1.12.0")
+            implementation("io.ktor:ktor-client-content-negotiation:2.3.6")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.6")
 
         }
         desktopMain.dependencies {
