@@ -16,7 +16,14 @@ compose-plugin = "1.5.11"
 junit = "4.13.2"
 kotlin = "1.9.21"
 precompose = "1.5.10"
-precompose-viewmodel = "1.5.10"
+koin = "3.5.0"
+koin-compose-version = "1.1.0"
+ktorVersion = "2.3.6"
+ktorfit-version = "1.12.0"
+ksp-version = "1.9.21-1.0.16"
+kotlinx-serialization = "1.6.2"
+image-loade-version = "1.7.4"
+
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -34,14 +41,29 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
-
 #Precompose
 precompose-lib = { module = "moe.tlaster:precompose", version.ref = "precompose" }
 precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
 precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
+#Koin
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin-compose-version" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-core-android = { module = "io.insert-koin:koin-android", version.ref = "koin"}
+#Kps
+google-ksp = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp-version" }
+#Ktor
+ktorfit-ksp = { module = "de.jensklingenberg.ktorfit:ktorfit-ksp", version.ref = "ktorfit-version" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "image-loade-version" }
+image-loader-moko = { module = "io.github.qdsfdhvh:image-loader-extension-moko-resources", version.ref = "image-loade-version" }
+image-loader-blur = { module = "io.github.qdsfdhvh:image-loader-extension-blur", version.ref = "image-loade-version" }
+
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+ktorfit = { id ="de.jensklingenberg.ktorfit", version.ref = "ktorfit-version" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
